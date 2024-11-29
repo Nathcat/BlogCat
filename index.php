@@ -11,7 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
 
-    <?php 
+    <?php
     if (array_key_exists("search",  $_GET)) {
         $conn = new mysqli("localhost:3306", "blog", "", "BlogCat");
         $stmt = $conn->prepare("SELECT Posts.*, SSO.Users.username AS authorName FROM Posts JOIN SSO.Users ON SSO.Users.id = Posts.author WHERE title like ?");
