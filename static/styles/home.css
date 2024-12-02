@@ -23,3 +23,9 @@
     border-left: 1px solid var(--quad-color);
     max-width: fit-content;
 }
+
+#post-edit-content {
+    font-size: 2vw;
+    width: 100%;
+    height: 100%;
+}

@@ -9,7 +9,8 @@ if ($_SERVER["SERVER_NAME"] === "localhost") {
     $_SESSION["user"] = [
         "fullName" => "Nathan Baines",
         "pfpPath" => "1.png",
-        "username" => "Nathcat"
+        "username" => "Nathcat",
+        "id" => 1
     ];
 }
 else if (!array_key_exists("user", $_SESSION)) {

@@ -27,8 +27,8 @@
     }
     else {
         $conn = new mysqli("localhost:3306", "blog", "", "BlogCat");
-        $stmt = $conn->prepare("SELECT Posts.*, SSO.Users.username AS authorName FROM Posts JOIN SSO.Users ON SSO.Users.id = Posts.author ORDER BY timePublished DESC LIMIT 1");
-        $stmt->execute(); $post = $stmt->get_result()->fetch_assoc();
+        $stmt = $conn->prepare("SELECT Posts.*, SSO.Users.username AS authorName FROM Posts JOIN SSO.Users ON SSO.Users.id = Posts.author ORDER BY id DESC LIMIT 5");
+        $stmt->execute(); $posts = $stmt->get_result();
     }
     ?>
 
@@ -86,8 +86,14 @@
                     <input type="text" name="search" placeholder="Search for a post">
                 </form>
 
-                <h2>Or, view the most recent post</h2>
-                <?php include("search-result.php"); ?>
+                <h2><a href="/create">Create a post</a></h2>
+
+                <h2>Or, view the most recent posts</h2>
+                <div style="width: 100%" class="column align-center">
+                    <?php 
+                    while ($post = $posts->fetch_assoc()) include("search-result.php"); 
+                    ?>
+                </div>
             </div>
 
             <?php endif ; ?>
