@@ -9,8 +9,23 @@ include("../start-session.php");
 $content = json_decode(file_get_contents("php://input"), true);
 
 try {
-    mysqli_report(MYSQLI_REPORT_ALL);
     $conn = new mysqli("localhost:3306", "blog", "", "BlogCat");
+    $stmt = $conn->prepare("INSERT IGNORE INTO UserData (id) VALUES (?)");
+    $stmt->bind_param("i", $_SESSION["user"]["id"]);
+    $stmt->execute();
+    $stmt->close();
+
+    $stmt = $conn->prepare("SELECT * FROM UserData WHERE id = ?");
+    $stmt->bind_param("i", $_SESSION["user"]["id"]);
+    $stmt->execute();
+    $res = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    if ($res["can_post"] === 0) {
+        die("{\"status\": \"fail\", \"message\": \"You are not allowed to do this.\"}");
+    }
+
+
     $stmt = $conn->prepare("CALL create_post(?, ?)");
     $stmt->bind_param("is", $_SESSION["user"]["id"], $content["title"]);
     $stmt->execute(); $res = $stmt->get_result()->fetch_assoc();
