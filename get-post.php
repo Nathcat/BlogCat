@@ -16,7 +16,7 @@ $pd = new Parsedown();
 if ($page === null) : ?>
     <div class="main align-center justify-center">
         <h1>Whoops! This page doesn't exist!</h1>
-        <h2><a href=\"/\">Return home</a></h2>
+        <h2><a href="/">Return home</a></h2>
     </div>
 <?php else : $content = file_get_contents("posts/" . $page["filePath"]); ?>
 
