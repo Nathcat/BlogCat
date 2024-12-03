@@ -46,7 +46,7 @@
 
                 <div class="row align-center" style="width: 100%; height: 100%; margin-bottom: 50px;">
                     <textarea id="post-edit-content"></textarea>
-                    <div class="post-content" style="margin-left: 10px"></div>
+                    <div id="post-preview" class="post-content" style="margin-left: 10px"></div>
                 </div>
 
                 <div class="row align-center justify-center" style="width: 100%">
@@ -60,9 +60,7 @@
                 var converter = new showdown.Converter();
 
                 $("#post-edit-content").on("input", function(e) {
-                    $(".post-content").html(
-                        converter.makeHtml($(this).val())
-                    );
+                        document.getElementById("post-preview").innerHTML = converter.makeHtml($(this).val());
 
                     $(".post-content a").each(function() {
                         $(this).attr("target", "_blank");
