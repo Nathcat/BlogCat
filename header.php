@@ -10,7 +10,7 @@
         <?php if (!isset($__REMOVE_PROFILE_BANNER__)) : ?>
         <span class="half-spacer"></span>
 
-        <div style="cursor: pointer;" class="row justify-center align-center" onclick="location = 'https://data.nathcat.net/sso';">
+        <div style="cursor: pointer;" class="row justify-center align-center" onclick="location = '/user';">
             <div class="small-profile-picture">
                 <img src="<?php echo "$_DATA_BASE_URL/pfps/" . $_SESSION["user"]["pfpPath"]; ?>">
             </div>
