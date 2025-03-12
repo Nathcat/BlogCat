@@ -31,7 +31,7 @@
 
     <body>
         <div id="page-content" class="content">
-            <?php include("header.php"); ?>
+            <?php $__NO_AUTH__ = 1; include("header.php"); ?>
 
             <?php if (array_key_exists("search", $_GET)) : ?>
                 <div class="column align-center" style="justify-content: start">

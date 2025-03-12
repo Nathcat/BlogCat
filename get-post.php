@@ -51,9 +51,9 @@ if ($page === null) : ?>
         <div style="width: fit-content" class="row align-center justify-center">
             <p>
                 <i>Published <?php echo $page["timePublished"]; ?> by <?php echo $page["authorName"]; ?></i>
-                <?php if (array_key_exists("user", $_SESSION)) { if ($page["author"] != $_SESSION["user"]["id"]) : ?>
+                <?php if (array_key_exists("user", $_SESSION)) : if ($page["author"] != $_SESSION["user"]["id"]) : ?>
                     <button onclick="fetch('/follow.php?id=<?php echo $page['author']; ?>', { method: 'GET', credentials: 'include' }).then((r) => r.json()).then((r) => r.status === 'success' ? location.reload() : alert(r.message))"><?php echo $follows_author ? "Unfollow" : "Follow"; ?></button>
-                <?php endif; }?>
+                <?php endif; endif; ?>
             </p>
         </div>
 

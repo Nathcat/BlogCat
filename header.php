@@ -1,4 +1,4 @@
-<?php include("start-session.php"); ?>
+<?php if (!isset($__NO_AUTH__)) { include("start-session.php"); }?>
 
 <div class="navbar column align-center justify-center">
     <div style="width: 100%" class="row align-center justify-center">
@@ -7,7 +7,7 @@
             <a href="https://apps.nathcat.net">Part of the Nathcat Network</a>
         </div>
 
-        <?php if (!isset($__REMOVE_PROFILE_BANNER__)) : ?>
+        <?php if (!isset($__NO_AUTH__)) : if (!isset($__REMOVE_PROFILE_BANNER__)) : ?>
         <span class="half-spacer"></span>
 
         <div style="cursor: pointer;" class="row justify-center align-center" onclick="location = '/user';">
@@ -17,6 +17,6 @@
 
             <h2 style="margin-left: 20px;"><?php echo $_SESSION["user"]["fullName"]; ?></h2>
         </div>
-        <?php endif; ?>
+        <?php endif; endif; ?>
     </div>
 </div>
