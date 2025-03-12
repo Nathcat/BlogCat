@@ -7,7 +7,7 @@
             <a href="https://apps.nathcat.net">Part of the Nathcat Network</a>
         </div>
 
-        <?php if (!isset($__NO_AUTH__)) : if (!isset($__REMOVE_PROFILE_BANNER__)) : ?>
+        <?php if (!array_key_exists("user", $_SESSION)) : if (!isset($__REMOVE_PROFILE_BANNER__)) : ?>
         <span class="half-spacer"></span>
 
         <div style="cursor: pointer;" class="row justify-center align-center" onclick="location = '/user';">
