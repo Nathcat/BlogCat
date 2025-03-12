@@ -6,13 +6,14 @@ header("Content-Type: text/html");
 
 session_name("AuthCat-SSO");
 session_start();
-
+/**
 if (!array_key_exists("user", $_SESSION)) : ?>
     <div class="main align-center justify-center">
         <h1>You are not logged in!</h1>
     </div>
 <?php exit();
 endif;
+*/
 
 include("parsedown/Parsedown.php");
 
