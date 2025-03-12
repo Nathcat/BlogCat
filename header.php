@@ -1,4 +1,4 @@
-<?php if (!isset($__NO_AUTH__)) { include("start-session.php"); }?>
+<?php include("start-session.php"); ?>
 
 <div class="navbar column align-center justify-center">
     <div style="width: 100%" class="row align-center justify-center">
