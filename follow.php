@@ -1,4 +1,4 @@
-<?php 
+<?php
 header("Access-Control-Allow-Origin: https://blog.nathcat.net");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Methods: GET");
@@ -14,23 +14,23 @@ if (!array_key_exists("user", $_SESSION)) {
 
 
 if (array_key_exists("id", $_GET)) {
-    $conn = new mysqli("localhost:3306", "blog", "", "BlogCat");
-    $stmt = $conn->prepare("INSERT INTO followers (id, `follows`) VALUES (?, ?);");
-    $stmt->bind_param("ii", $_SESSION["user"]["id"], $_GET["id"]);
-     
-    if (!$stmt->execute()) {
+    try {
+        $conn = new mysqli("localhost:3306", "blog", "", "BlogCat");
+        $stmt = $conn->prepare("INSERT INTO followers (id, `follows`) VALUES (?, ?);");
+        $stmt->bind_param("ii", $_SESSION["user"]["id"], $_GET["id"]);
+        $stmt->execute();
+    } catch (Exception $e) {
         $unfollow = $conn->prepare("DELETE FROM followers WHERE id = ? AND `follows` = ?");
         $unfollow->bind_param("ii", $_SESSION["user"]["id"], $_GET["id"]);
-        $unfollow->execute(); $unfollow->close();
+        $unfollow->execute();
+        $unfollow->close();
     }
 
-    $stmt->close(); $conn->close();
-    
+    $stmt->close();
+    $conn->close();
+
 
     echo "{\"status\": \"success\"}";
-
-}
-else {
+} else {
     die("{\"status\": \"fail\", \"message\": \"You must specify who you wish to follow.\"}");
 }
-?>
