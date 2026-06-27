@@ -15,7 +15,9 @@
 
 <body>
     <div class="content">
-        <?php include("../header.php"); ?>
+      
+      <?php $IS_CREATE_PAGE = true;
+      include("../header.php"); ?>
 
         <?php
         $conn = new mysqli("localhost:3306", "blog", "", "BlogCat");
